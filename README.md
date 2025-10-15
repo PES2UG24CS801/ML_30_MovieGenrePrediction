@@ -28,13 +28,13 @@ Teamid: 30 , Project ID = 30
    ```bash
 
 ##Execution
-To train the genre prediction: run 
-    python train.py
-To generate predictions in terminal run python predict.py data/filename.jpg
+-To train the genre prediction: run 
+   -python train.py
+-To generate predictions in terminal run python predict.py data/filename.jpg
 
-To verify the accuracy of the model and verify the genre of the poster use the csv file which has the same IMDBid = filename.jpg
-The csv file maps the poster to the id
+-To verify the accuracy of the model and verify the genre of the poster use the csv file which has the same IMDBid = filename.jpg
+-The csv file maps the poster to the id
 
-TO run the application run 
-    python app.py 
-    It runs through flask, the api depicts the history of posters predicted
+-To run the application run 
+    -python app.py 
+    -It runs through flask, the api depicts the history of posters predicted
