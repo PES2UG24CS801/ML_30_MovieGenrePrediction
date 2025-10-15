@@ -1,5 +1,5 @@
 # MovieAI: Movie Genre Classifier
-
+Teamid: 30 , Project ID = 30
 ![MovieAI](static/B2.gif)
 
 **MovieAI** is a web-based application that predicts movie genres from poster images using a deep learning model. Powered by PyTorch and Flask, it features a sleek, Netflix-inspired UI with drag-and-drop image uploads, real-time predictions, and a history of past predictions. The model uses a ResNet-18 backbone for multi-label genre classification, trained on a dataset of movie posters and genres.
@@ -26,3 +26,15 @@
 ## Installation
 1. **Clone the Repository**:
    ```bash
+
+##Execution
+To train the genre prediction: run 
+    python train.py
+To generate predictions in terminal run python predict.py data/filename.jpg
+
+To verify the accuracy of the model and verify the genre of the poster use the csv file which has the same IMDBid = filename.jpg
+The csv file maps the poster to the id
+
+TO run the application run 
+    python app.py 
+    It runs through flask, the api depicts the history of posters predicted
