@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Training Metrics</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="logo">MovieAI</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/predict">Predict</a>
+      <a href="/history">History</a>
+      <a href="/metrics" class="active">Metrics</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <h1>Training Metrics: Accuracy vs F1 Score</h1>
+    {% if error %}
+      <p class="error-message">{{ error }}</p>
+    {% else %}
+      <img src="{{ url_for('static', filename='training_metrics.png') }}" alt="Metrics Plot" class="metrics-image">
+    {% endif %}
+    <a href="/" class="back-button">Back to Home</a>
+  </div>
+</body>
+</html>

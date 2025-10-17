@@ -115,6 +115,14 @@ def history_page():
         app.logger.error(f"Error loading history: {str(e)}")
         return render_template('history.html', history=[], error="Could not load history.")
 
+@app.route('/metrics')
+def metrics():
+    plot_path = 'static/training_metrics.png'
+    if os.path.exists(plot_path):
+        return render_template('metrics.html')
+    else:
+        return render_template('metrics.html', error="Run `python train.py` first!")
+
 # ------------------- RUN -------------------
 if __name__ == '__main__':
     app.run(debug=True)

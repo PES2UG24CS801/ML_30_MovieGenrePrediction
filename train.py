@@ -1,4 +1,3 @@
-# train.py
 import os
 import pandas as pd
 from PIL import Image
@@ -10,6 +9,8 @@ import torch.optim as optim
 from torchvision import models
 from sklearn.metrics import accuracy_score, precision_score, recall_score, f1_score
 import numpy as np
+import matplotlib.pyplot as plt
+import json
 
 # -------------------
 # CONFIG
@@ -91,6 +92,15 @@ optimizer = optim.Adam(model.parameters(), lr=LEARNING_RATE)
 # -------------------
 # TRAINING LOOP
 # -------------------
+metrics_history = {
+    'epochs': [],
+    'losses': [],
+    'accuracies': [],
+    'precisions': [],
+    'recalls': [],
+    'f1s': []
+}
+
 for epoch in range(EPOCHS):
     model.train()
     total_loss = 0
@@ -122,6 +132,13 @@ for epoch in range(EPOCHS):
     recall = recall_score(all_labels, all_preds, average='micro', zero_division=0)
     f1 = f1_score(all_labels, all_preds, average='micro', zero_division=0)
 
+    metrics_history['epochs'].append(epoch + 1)
+    metrics_history['losses'].append(total_loss / len(dataset))
+    metrics_history['accuracies'].append(acc)
+    metrics_history['precisions'].append(precision)
+    metrics_history['recalls'].append(recall)
+    metrics_history['f1s'].append(f1)
+
     print(f"Epoch [{epoch+1}/{EPOCHS}] | "
           f"Loss: {total_loss/len(dataset):.4f} | "
           f"Acc: {acc:.4f} | Prec: {precision:.4f} | Recall: {recall:.4f} | F1: {f1:.4f}")
@@ -134,5 +151,27 @@ with open("genres.txt", "w", encoding="utf8") as f:
     for g in dataset.genres:
         f.write(g + "\n")
 
+# Save metrics JSON
+with open('metrics.json', 'w') as f:
+    json.dump(metrics_history, f, indent=4)
+
+# Create static folder if not exists
+os.makedirs('static', exist_ok=True)
+
+# Generate & Save Plot
+plt.figure(figsize=(12, 8))
+plt.plot(metrics_history['epochs'], metrics_history['accuracies'], label='Accuracy', marker='o', linewidth=2)
+plt.plot(metrics_history['epochs'], metrics_history['f1s'], label='F1 Score', marker='s', linewidth=2)
+plt.xlabel('Epochs')
+plt.ylabel('Score')
+plt.title('🌀 Movie Genre Prediction: Accuracy vs F1 Score Over Epochs')
+plt.legend(fontsize=12)
+plt.grid(True, alpha=0.3)
+plt.tight_layout()
+plt.savefig('static/training_metrics.png', dpi=300, bbox_inches='tight')
+plt.close()
+
 print("\n✅ Training complete! Model and genres saved successfully.")
 print(f"📊 Final Metrics -> Accuracy: {acc:.4f}, Precision: {precision:.4f}, Recall: {recall:.4f}, F1: {f1:.4f}")
+print("📈 Metrics JSON & Plot saved!")
+print(f"🔗 View at: http://127.0.0.1:5000/metrics")

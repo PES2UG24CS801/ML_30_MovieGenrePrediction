@@ -1,4 +1,3 @@
-# predict.py
 import sys
 import torch
 from torchvision import models, transforms

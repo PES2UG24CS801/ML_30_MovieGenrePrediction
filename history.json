@@ -62,5 +62,23 @@
       59.73
     ],
     "timestamp": "2025-10-15 12:51:57"
+  },
+  {
+    "image_filename": "1760673128_Screenshot_2025-10-17_092143.png",
+    "genres": [
+      "Drama"
+    ],
+    "confidences": [
+      88.92
+    ],
+    "timestamp": "2025-10-17 09:22:08"
+  },
+  {
+    "image_filename": "1760673152_t1.jpg",
+    "genres": [
+      "None"
+    ],
+    "confidences": [],
+    "timestamp": "2025-10-17 09:22:33"
   }
 ]

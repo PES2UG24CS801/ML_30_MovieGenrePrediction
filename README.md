@@ -38,3 +38,6 @@ Teamid: 30 , Project ID = 30
 -To run the application run 
     -python app.py 
     -It runs through flask, the api depicts the history of posters predicted
+
+-- To seperately run predict on terminal run python predict.py filename 
+-- If the prediction comes as none, tweek the confidence rate(threshold) to get actual prediction  on predict.py
